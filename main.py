@@ -245,8 +245,8 @@ def testRandInsert():
     plt.plot(size, abrTotAvgRand, label="ABR")
     plt.plot(size, arnTotAvgRand, label="ARN")
     plt.legend()
-    plt.ylabel("Time in ms")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Tempo in ms")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -278,8 +278,8 @@ def testOrdInsert():
     plt.plot(size, abrTotAvgOrd, label="ABR")
     plt.plot(size, arnTotAvgOrd, label="ARN")
     plt.legend()
-    plt.ylabel("Time in ms")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Tempo in ms")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -307,8 +307,8 @@ def testRandHeight():
     plt.plot(size, abrTotAvgRand, label="ABR")
     plt.plot(size, arnTotAvgRand, label="ARN")
     plt.legend()
-    plt.ylabel("Height")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Altezza")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -337,8 +337,8 @@ def testOrdHeight():
     plt.plot(size, abrTotAvgOrd, label="ABR")
     plt.plot(size, arnTotAvgOrd, label="ARN")
     plt.legend()
-    plt.ylabel("Height")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Altezza")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -349,30 +349,35 @@ def testRandWalk():
     nsamples = 200
     for s in size:
         abrAvgRand = 0
-        arnAvgRand = 0
         for r in range(nsamples):
             A = np.random.randint(0, s, s)
             abr = ABR()
-            arn = ARN()
             for i in A:
-                arn.insert(Node(i))
                 abr.insert(i)
 
             start = timer()
             abr.inorder()
             abrAvgRand += timer() - start
+        abrAvgRand = abrAvgRand / nsamples
+        abrTotAvgRand.append(abrAvgRand * 1000)
+    for s in size:
+        arnAvgRand = 0
+        for r in range(nsamples):
+            A = np.random.randint(0, s, s)
+            arn = ARN()
+            for i in A:
+                arn.insert(Node(i))
+
             start = timer()
             arn.inorder()
             arnAvgRand += timer() - start
-        abrAvgRand = abrAvgRand / nsamples
         arnAvgRand = arnAvgRand / nsamples
-        abrTotAvgRand.append(abrAvgRand * 1000)
         arnTotAvgRand.append(arnAvgRand * 1000)
     plt.plot(size, abrTotAvgRand, label="ABR")
     plt.plot(size, arnTotAvgRand, label="ARN")
     plt.legend()
-    plt.ylabel("Time in ms")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Tempo in ms")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -405,8 +410,8 @@ def testOrdWalk():
     plt.plot(size, abrTotAvgOrd, label="ABR")
     plt.plot(size, arnTotAvgOrd, label="ARN")
     plt.legend()
-    plt.ylabel("Time in ms")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Tempo in ms")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
@@ -441,8 +446,8 @@ def testOrdSearch():
     plt.plot(size, abrTotAvgOrd, label="ABR")
     plt.plot(size, arnTotAvgOrd, label="ARN")
     plt.legend()
-    plt.ylabel("Time in ms")
-    plt.xlabel("Input's dimension ")
+    plt.ylabel("Tempo in ms")
+    plt.xlabel("Dimensione dell'input")
     plt.show()
 
 
